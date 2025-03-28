@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "맑은 고딕";
+        }
+
+        ul, ol, li {
+            list-style: none;
+        }
+
+        header {
+            width: 100%;
+            height: 100px;
+            margin: 0 auto; 
+           
+
+        }
+
+        #logo {
+            float: center;
+            width: 300px;
+            height: 90px;
+            margin: auto;
+            
+            
+        }
+
+        #logo > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            text-align: center;
+           
+        }
+
+        nav {
+            float: right;
+            width: 800px;
+            height: 30px;
+            margin: 30px 30px 0 0;
+           
+        }
+
+        nav ul {
+            font-family: "Arial";
+            font-weight: bold;
+        }
+
+        nav ul li {
+            float: left;
+            padding: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        nav ul li a:hover {
+            color: green;
+        }
+
+        #slider {
+            width: 100%;
+            height: 1000px;
+                      
+        }
+
+        #slider img {
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+        }
+
+        section {
+            width: 1100px;
+            height: 230px;
+            margin: 0 auto;
+            
+            
+        }
+
+        article {
+            width: 340px;
+            height: 145px;
+            
+            
+            float: left;
+            margin: 30px 10px;
+        }
+
+        article img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #sale > .sitem > a > img {
+            width: 50%;
+            height: 200px;
+            border-radius: 10px;
+        }
+
+        article h3 {
+            margin: 0;
+            font-size: 16px;
+            height: 30px;
+            width: 100%;
+        }
+
+        article h4 {
+            margin: 0;
+            font-size: 14px;
+            height: 30px;
+        }
+
+        article p {
+            font-family: "돋움";
+            font-size: 12px;
+            color: #666;
+        }
+
+        article .icon {
+            width: 100px;
+            height: 75px;
+            float: left;
+            margin: 0 0 0 5px;
+            text-align: center;
+        }
+
+        article .icon img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        article .icon span {
+            width: 100%;
+            text-align: center;
+            float: left;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        footer {
+            width: 1100px;
+            height: 100px;
+            margin: 0 auto;
+            
+        }
+
+        footer img {
+            float: left;
+            margin: 20px 0 0 2px;
+            max-width: 20px;
+        }
+
+        footer p {
+            font-family: "돋움";
+            font-size: 12px;
+            color: #666;
+            margin: 40px 100px 0 0;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="inner">
+          
+           
+  
+           <div id="logo"><img src="../css/img/logo2.PNG" alt="logo" ></div>
+                
+        <nav>
+            <ul>
+                <li><a href="#">MMMM</a></li>
+                <li><a href="#">PLAVE</a></li>
+                <li><a href="#">NOTICE</a></li>
+            </ul>
+        </nav>  
+        </margin>
+       
+    </header>
+
+    <div id="slider"><img src="../css/img/main.PNG" alt="Slider"></div>
+
+    <section>
+        <article>
+            <h3>야생생물주의</h3>
+            <a href="#"><img src="../css/img/미므.PNG" alt="야생생물"></a>
+            <h4>므메미무</h4>
+            <p>아스테룸에 나타난 므메미무의 정체가 공개된다.</p>
+        </article>
+
+        <article>
+            <h3>므메미무의 모든것</h3>
+            <a href="#"><img src="../css/img/img55.PNG" alt="MMMM"></a>
+        </article>
+
+        <article>
+            <h3>고객지원</h3>
+            <div class="icon">
+                <a href="#"><img src="../css/img/icon5.png" alt="Q&A"></a>
+                <span>Q&A</span>
+            </div>
+            <div class="icon">
+                <a href="#"><img src="../css/img/icon6.png" alt="논중화물"></a>
+                <span>논중화물</span>
+            </div>
+            <div class="icon">
+                <a href="#"><img src="../css/img/icon5.png" alt="므메미무 찾기"></a>
+                <span>므메미무 찾기</span>
+            </div>
+        </article>
+    </section>
+
+    <footer>
+        <img src="../img/logo.PNG" alt="Logo">
+        <p>Jaguar Land Rover Limited: Registered office: Abbey Road, Whitley, Coventry CV3 4Lf. Registered in England No:1672070</p>
+    </footer>
+</body>
+</html>
