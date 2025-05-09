@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>포트폴리오 메인</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background-color: black;
+      color: white;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 별 배경 */
+    #stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* 별똥별 */
+    .meteor {
+      position: absolute;
+      top: -100px;
+      transform: rotate(45deg);
+      opacity: 0.8;
+      width: 2px;
+      animation: fall 5s linear infinite, gradientTail 3s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% { transform: translate(0, 0) rotate(45deg); opacity: 1; }
+      100% { transform: translate(-1000px, 1000px) rotate(45deg); opacity: 0; }
+    }
+
+    @keyframes gradientTail {
+      0% { background: linear-gradient(rgba(255,255,255,0), #cfd9df); }
+      50% { background: linear-gradient(rgba(255,255,255,0), #fdf4a1); }
+      100% { background: linear-gradient(rgba(255,255,255,0), #cfd9df); }
+    }
+
+    .meteor:nth-of-type(1) { right: 10%; height: 60px; animation-delay: 0s; }
+    .meteor:nth-of-type(2) { right: 30%; height: 100px; animation-delay: 1s; }
+    .meteor:nth-of-type(3) { right: 50%; height: 80px; animation-delay: 2s; }
+    .meteor:nth-of-type(4) { right: 70%; height: 120px; animation-delay: 3s; }
+    .meteor:nth-of-type(5) { right: 90%; height: 70px; animation-delay: 2.5s; }
+
+    /* 로고 */
+    .logo {
+      margin: 80px auto 60px;
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    .logo img {
+      height: 80px;
+    }
+
+    /* 네비게이션 바 */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      font-size: 20px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #ffd86b;
+    }
+
+    /* 슬라이더 */
+    .slider-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      margin: 100px auto;
+      max-width: 1200px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .slider {
+      width: 1500px;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .arrow {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .arrow:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 별 배경 -->
+  <div id="stars"></div>
+
+  <!-- 별똥별 -->
+  <div class="meteor"></div>
+  <div class="meteor"></div>
+  <div class="meteor"></div>
+  <div class="meteor"></div>
+  <div class="meteor"></div>
+
+  <!-- 로고 -->
+  <div class="logo">
+    <a href="./Hompage.html">
+      <img src="../img/Asterum.png" alt="로고">
+    </a>
+  </div>
+
+  <!-- 네비게이션 -->
+  <nav class="navbar">
+    <a href="#">홈</a>
+    <a href="#">소개</a>
+    <a href="#">포트폴리오</a>
+  </nav>
+
+  <!-- 슬라이더 -->
+  <div class="slider-wrapper">
+    <img class="arrow left-arrow" src="../img/left.png" alt="이전">
+    
+    <div class="slider">
+      <img src="../img/KakaoTalk_20250509_152722850_02.jpg" alt="슬라이드1" class="slide active">
+      <img src="../img/KakaoTalk_20250509_152722850_01.jpg" alt="슬라이드2" class="slide">
+      <img src="../img/KakaoTalk_20250509_152722850.jpg" alt="슬라이드3" class="slide">
+    </div>
+
+    <img class="arrow right-arrow" src="../img/right.png" alt="다음">
+  </div>
+
+  <!-- 스크립트 -->
+  <script>
+    // 별 생성
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.width = Math.random() * 2 + 1 + "px";
+      star.style.height = star.style.width;
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.animationDelay = Math.random() * 2 + "s";
+      starsContainer.appendChild(star);
+    }
+
+    // 슬라이드
+    const slides = document.querySelectorAll('.slide');
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[index].classList.add('active');
+    }
+
+    leftArrow.addEventListener('click', () => {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    });
+
+    rightArrow.addEventListener('click', () => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    });
+
+    showSlide(current);
+  </script>
+</body>
+</html>
