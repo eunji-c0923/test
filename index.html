@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>맛있조 - 맛집 커뮤니티 게시판</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fffaf5;
+      color: #333;
+      font-size: 0.8rem;
+    }
+    header {
+      background: #ff725e;
+      color: white;
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.92rem;
+      font-weight: bold;
+    }
+    .user-links a {
+      font-size: 0.96rem;
+      margin-left: 16px;
+      color: white;
+      text-decoration: none;
+    }
+    .container {
+      display: flex;
+      padding: 16px;
+    }
+    nav {
+      width: 176px;
+      background-color: #ffede6;
+      padding: 24px 16px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      font-weight: 600;
+      color: #ff725e;
+    }
+    nav a {
+      text-decoration: none;
+      color: #ff725e;
+      font-size: 0.88rem;
+      padding: 6.4px 9.6px;
+      border-radius: 6.4px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #ffb3a1;
+      color: white;
+    }
+    main {
+      flex: 1;
+      margin-left: 176px;
+    }
+    .slider-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 880px;
+      margin: 0 auto 40px;
+      overflow: hidden;
+      background: #fff0eb;
+      border-radius: 8px;
+      padding: 16px 32px;
+      box-sizing: border-box;
+    }
+    .slider {
+      display: flex;
+      gap: 8px;
+      transition: transform 0.4s ease;
+    }
+    .slider-item {
+      flex: 0 0 160px;
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 24px;
+      text-align: center;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      background: #ff725e;
+      border-radius: 50%;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      z-index: 10;
+    }
+    .arrow.left { left: 4px; }
+    .arrow.right { right: 4px; }
+
+    .board {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 0.8rem;
+    }
+    .board th, .board td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .board th {
+      background: #ffd8cc;
+    }
+    .highlight {
+      background: #fff0eb;
+      font-weight: bold;
+    }
+    .controls {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 8px;
+      gap: 8px;
+    }
+    .controls select,
+    .controls input[type="text"] {
+      padding: 8px 9.6px;
+      border-radius: 4.8px;
+      border: 1.5px solid #ccc;
+      font-size: 0.88rem;
+    }
+    .controls input[type="text"] {
+      width: 200px;
+    }
+    .controls button {
+      background: #ff725e;
+      color: white;
+      border: none;
+      padding: 9.6px 19.2px;
+      border-radius: 4.8px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .controls button:hover {
+      background: #e05a45;
+    }
+
+    .pagination {
+      text-align: center;
+      margin: 12px 0;
+    }
+    .pagination .page-number {
+      display: inline-block;
+      margin: 0 4.8px;
+      padding: 6.4px 11.2px;
+      color: #ff725e;
+      border: 1px solid #ff725e;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 600;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 0.8rem;
+    }
+    .pagination .page-number:hover,
+    .pagination .page-number.active {
+      background-color: #ff725e;
+      color: white;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffdccb;
+      padding: 12px 0;
+      text-align: center;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+      font-size: 0.72rem;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">맛있조</div>
+    <div class="user-links">
+      <a href="login.html">로그인</a>
+      <a href="register.html">회원가입</a>
+      <a href="mypage.html">마이페이지</a>
+    </div>
+   
+  </header>
+  <div class="container">
+    <nav>
+      <a href="#">홈</a>
+      <a href="#">지역별</a>
+      <a href="#">추천 맛집</a>
+      <a href="#">새로운 맛집</a>
+    </nav>
+    <main>
+      <div class="slider-wrapper">
+        <div class="arrow left" onclick="slideLeft()">‹</div>
+        <div class="slider" id="slider">
+          <div class="slider-item">홍대 맛집</div>
+          <div class="slider-item">연남 맛집</div>
+          <div class="slider-item">건대 맛집</div>
+          <div class="slider-item">부산 맛집</div>
+          <div class="slider-item">대전 맛집</div>
+          <div class="slider-item">동성로 맛집</div>
+          <div class="slider-item">경주 맛집</div>
+          <div class="slider-item">속초 맛집</div>
+          <div class="slider-item">잠실 맛집</div>
+          <div class="slider-item">신촌 맛집</div>
+        </div>
+        <div class="arrow right" onclick="slideRight()">›</div>
+      </div>
+
+      <table class="board">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight"><td>1</td><td>[인기] 홍대 돈까스 맛집!</td><td>맛돌이</td><td>2025-05-15</td><td>152</td></tr>
+          <tr class="highlight"><td>2</td><td>[인기] 제주도 흑돼지 후기</td><td>맛녀석</td><td>2025-05-14</td><td>143</td></tr>
+          <tr><td>3</td><td>강남 쌀국수집 추천</td><td>쌀쌀이</td><td>2025-05-14</td><td>87</td></tr>
+          <tr><td>4</td><td>이태원 피자집 후기</td><td>치즈왕</td><td>2025-05-13</td><td>73</td></tr>
+          <tr><td>5</td><td>부산 밀면 추천좀요</td><td>부산가자</td><td>2025-05-13</td><td>65</td></tr>
+          <tr><td>6</td><td>수원 통닭 골목 다녀왔어요</td><td>치킨냥이</td><td>2025-05-12</td><td>61</td></tr>
+          <tr><td>7</td><td>광주 떡갈비 맛집 어디?</td><td>미식이</td><td>2025-05-12</td><td>54</td></tr>
+          <tr><td>8</td><td>청주 숨은 맛집 공유</td><td>숨맛러버</td><td>2025-05-11</td><td>49</td></tr>
+          <tr><td>9</td><td>대구 막창집 솔직 후기</td><td>맛짱</td><td>2025-05-11</td><td>44</td></tr>
+          <tr><td>10</td><td>대전 칼국수 추천합니다</td><td>칼국수집</td><td>2025-05-10</td><td>41</td></tr>
+        </tbody>
+      </table>
+
+      <div class="controls">
+        <select>
+          <option>제목</option>
+          <option>작성자</option>
+        </select>
+        <input type="text" placeholder="검색어 입력" />
+        <button>검색</button>
+        <button onclick="location.href='write.html'">글쓰기</button>
+      </div>
+
+      <div class="pagination">
+        <span class="page-number active">1</span>
+        <span class="page-number">2</span>
+        <span class="page-number">3</span>
+        <span class="page-number">4</span>
+        <span class="page-number">5</span>
+      </div>
+    </main>
+  </div>
+  <footer>© 2025 맛있조. All rights reserved.</footer>
+
+  <script>
+    let slider = document.getElementById('slider');
+    let currentIndex = 0;
+
+    function slideLeft() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        slider.style.transform = `translateX(-${currentIndex * 168}px)`;
+      }
+    }
+
+    function slideRight() {
+      const maxIndex = slider.children.length - 5;
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        slider.style.transform = `translateX(-${currentIndex * 168}px)`;
+      }
+    }
+  </script>
+</body>
+</html>

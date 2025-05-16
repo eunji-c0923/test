@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>맛있조 - 회원가입</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fffaf5;
+      color: #333;
+      font-size: 0.8rem;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 40px 32px;
+      background: #fffaf5;
+    }
+
+    .register-box {
+      background: #fff0eb;
+      padding: 40px 32px;
+      border-radius: 20px;
+      width: 400px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .register-box h2 {
+      color: #ff725e;
+      margin-bottom: 24px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.6rem;
+    }
+
+    .register-box label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #ff725e;
+      font-size: 0.9rem;
+    }
+
+    .register-box input[type="text"],
+    .register-box input[type="password"],
+    .register-box input[type="email"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #ff725e;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .register-box input[type="text"]:focus,
+    .register-box input[type="password"]:focus,
+    .register-box input[type="email"]:focus {
+      border-color: #e05a45;
+    }
+
+    .register-box button {
+      width: 100%;
+      background: #ff725e;
+      border: none;
+      padding: 12px;
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .register-box button:hover {
+      background: #e05a45;
+    }
+
+    .register-box .login-link {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #ff725e;
+    }
+
+    .register-box .login-link a {
+      color: #e05a45;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .register-box .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <div class="register-box">
+      <h2>회원가입</h2>
+      <form id="registerForm" onsubmit="return registerSubmit()">
+        <label for="userid">아이디</label>
+        <input type="text" id="userid" name="userid" placeholder="아이디를 입력하세요" required />
+
+        <label for="nickname">닉네임</label>
+        <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요" required />
+
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required />
+
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required />
+
+        <label for="passwordConfirm">비밀번호 확인</label>
+        <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="비밀번호를 다시 입력하세요" required />
+
+        <button type="submit">회원가입</button>
+      </form>
+      <div class="login-link">
+        이미 회원이신가요? <a href="login.html">로그인</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function registerSubmit() {
+      const id = document.getElementById('userid').value.trim();
+      const nickname = document.getElementById('nickname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const pw = document.getElementById('password').value.trim();
+      const pwConfirm = document.getElementById('passwordConfirm').value.trim();
+
+      if (!id || !nickname || !email || !pw || !pwConfirm) {
+        alert('모든 항목을 입력해주세요.');
+        return false;
+      }
+
+      if (pw !== pwConfirm) {
+        alert('비밀번호가 일치하지 않습니다.');
+        return false;
+      }
+
+      alert(`회원가입 시도:\n아이디: ${id}\n닉네임: ${nickname}\n이메일: ${email}`);
+      return false; // 실제 제출 방지 (테스트용)
+    }
+  </script>
+
+</body>
+</html>

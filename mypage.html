@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>마이페이지 | 맛있조</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Gowun Dodum', sans-serif;
+      background: #fff5f2;
+      color: #333;
+    }
+
+    header {
+      background-color: #ff725e;
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    .user-links a {
+      color: white;
+      margin-left: 16px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 18px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff725e;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #ff725e;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1.5px solid #ff725e;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    textarea:focus {
+      border-color: #e05a45;
+    }
+
+    button {
+      background-color: #ff725e;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #e05a45;
+    }
+  </style>
+</head>
+<body>
+  
+
+  <div class="container">
+    <h2>마이페이지</h2>
+    <form id="mypageForm" onsubmit="return handleSubmit()">
+      <label for="userid">아이디</label>
+      <input type="text" id="userid" name="userid" value="user123" readonly />
+
+      <label for="email">이메일</label>
+      <input type="email" id="email" name="email" value="user@example.com" />
+
+      <label for="nickname">닉네임</label>
+      <input type="text" id="nickname" name="nickname" value="맛있조짱" />
+
+      <label for="password">비밀번호 변경</label>
+      <input type="password" id="password" name="password" placeholder="새 비밀번호 입력" />
+
+      <label for="intro">자기소개</label>
+      <textarea id="intro" name="intro" rows="4" placeholder="자기소개를 입력하세요.">맛있는 음식을 좋아해요!</textarea>
+
+      <button type="submit">정보 수정</button>
+    </form>
+  </div>
+
+  <script>
+    function handleSubmit() {
+      const email = document.getElementById("email").value.trim();
+      const nickname = document.getElementById("nickname").value.trim();
+      if (!email || !nickname) {
+        alert("이메일과 닉네임은 필수 입력 항목입니다.");
+        return false;
+      }
+      alert("회원 정보가 수정되었습니다!");
+      return false; // 실제 서버 처리 필요
+    }
+  </script>
+</body>
+</html>
