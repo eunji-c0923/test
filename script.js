@@ -781,5 +781,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         console.log('🌱 GreenCycle 스마트 시스템이 초기화되었습니다.');
         console.log('💚 지속 가능한 미래를 위한 첨단 폐기물 관리');
-    }, 1000);
+    }, 4000);
 });
